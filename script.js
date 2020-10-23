@@ -3,13 +3,13 @@ require([
     "esri/views/MapView",
     "esri/widgets/BasemapToggle",
     "esri/widgets/BasemapGallery",
-    "esri/layers/FeatureLayer"
-  ], function(Map, MapView, BasemapToggle, BasemapGallery, FeatureLayer) {
-   
+    "esri/layers/FeatureLayer",
+    "esri/widgets/Search"
+  ], function(Map, MapView, BasemapToggle, BasemapGallery, FeatureLayer, Search) {
+      
     var map = new Map({
       basemap: "topo-vector"
     });
-
     var view = new MapView({
       container: "viewDiv",
       map: map,
@@ -17,6 +17,11 @@ require([
       zoom: 13
     });
 
+
+    var search = new Search({
+      view: view
+    });
+    view.ui.add(search, "top-right");
     var basemapToggle = new BasemapToggle({
         view: view,
         nextBasemap: "satellite"
@@ -57,3 +62,5 @@ require([
   map.add(parksLayer, 0);
 
   });
+
+  
